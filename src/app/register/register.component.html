@@ -1,0 +1,44 @@
+<div class="dark-theme d-flex justify-content-center align-items-center vh-100">
+    <div class="card register-card">
+        <div class="card-body">
+            <h3 class="text-center">Manager Register</h3>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                                 
+                <div class="form-group mb-3">
+                    <label for="username">Username</label>
+                    <input type="text" formControlName="username" class="form-control" id="username" />
+                    <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="text-danger">
+                        Username is required.
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="email">Email</label>
+                    <input type="email" formControlName="email" class="form-control" id="email" />
+                    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-danger">
+                        Please enter a valid email address.
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" formControlName="phone" class="form-control" id="phone" />
+                    <div *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched" class="text-danger">
+                        Phone number must be 10 digits.
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="password">Password</label>
+                    <input type="password" formControlName="password" class="form-control" id="password" />
+                    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-danger">
+                        Password must be at least 8 characters.
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-block" [disabled]="registerForm.invalid">Register</button>
+                </div>
+            </form>
+            <div class="text-center mt-3">
+                <p class="small-text">Already have an account? <a routerLink="/login">Log in</a></p>
+            </div>
+        </div>
+    </div>
+</div>

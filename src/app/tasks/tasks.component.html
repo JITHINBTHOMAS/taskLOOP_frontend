@@ -1,0 +1,88 @@
+<!-- task-page.component.html -->
+<div class="container-fluid dark-theme p-3">
+    <div class="row">
+        <!-- Pie Chart Section -->
+        <div class="col-md-6 mb-3">
+            <div class="card bg-dark text-white">
+                <!-- <div class="card-body">
+                    <canvas baseChart
+                            [data]="pieChartData"
+                            [labels]="pieChartLabels"
+                            [chartType]="pieChartType">
+                    </canvas>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- User Details Section -->
+        <div class="col-md-6 mb-3">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h5 class="card-title">User Details</h5>
+                    <p><strong>Name:</strong> {{ userDetails.name }}</p>
+                    <p><strong>Email:</strong> {{ userDetails.email }}</p>
+                    <p><strong>Phone:</strong> {{ userDetails.phone }}</p>
+                    <!-- Additional user details here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Details Section -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card bg-dark text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Task Details</h5>
+                    <button class="btn btn-primary mb-2" (click)="openCreateTaskModal()">Create Task</button>
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>Task ID</th>
+                                <th>Assignee ID</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th>Description</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let task of tasks">
+                                <td>{{ task.id }}</td>
+                                <td>{{ task.assigneeID }}</td>
+                                <td>{{ task.dueDate | date }}</td>
+                                <td>{{ task.status }}</td>
+                                <td>{{ task.description }}</td>
+                                <td>
+                                    <button class="btn btn-info btn-sm mr-2" (click)="viewTask(task)">View</button>
+                                    <button class="btn btn-warning btn-sm mr-2" (click)="editTask(task)">Edit</button>
+                                    <button class="btn btn-danger btn-sm" (click)="removeTask(task.id)">Remove</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- task-create-modal.component.html -->
+<div class="modal fade" id="createTaskModal" tabindex="-1" role="dialog" aria-labelledby="createTaskModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content dark-theme">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createTaskModalLabel">Create Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form (ngSubmit)="createTask()">
+                    <!-- Form fields for task creation go here -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

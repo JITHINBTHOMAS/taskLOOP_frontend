@@ -1,0 +1,23 @@
+html, body, .dark-theme{
+    height: 100%;
+    background-color: #1a1a2e;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --accordion-header-bg: #007bff;
+    --accordion-header-color: white;
+    --accordion-body-bg: #f8f9fa;
+    --accordion-body-color: #333;
+}
+
+.accordion-button {
+    background-color: var(--accordion-header-bg);
+    color: var(--accordion-header-color);
+}
+
+.accordion-body {
+    background-color: var(--accordion-body-bg);
+    color: var(--accordion-body-color);
+}

@@ -1,0 +1,233 @@
+<!-- <div class="dark-theme d-flex justify-content-center align-items-center vh-100">
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore sint eveniet natus omnis, tempora expedita accusantium. Voluptates, aperiam! Illum, qui optio. Ipsum illum quisquam, rerum ipsa tempora id dolorem excepturi?</p>
+    <div>
+        <canvas id="canvas">{{chart}}</canvas>
+      </div>
+</div>
+
+   -->
+
+<div class="container-fluid dark-theme vh-100">
+    <div class="row p-4">
+        <!-- Section 1: Add Employee Section -->
+        <div class="col-lg-8 mb-6">
+            <div class="card bg-dark text-white shadow">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5>Employee Details</h5>
+                    <button class="btn btn-primary" 
+                        (click)="openAddEmployeeModal()">Add Employee</button>
+                </div>
+                <div class="card-body">
+                    <div *ngIf="employees.length === 0">
+                        <p>No employees added.</p>
+                    </div>
+                    <div *ngFor="let employee of employees; let i = index" class="d-flex">
+                        <div class="accordion accordion-flush" id="accordionExample">
+                            <div class="accordion-item{{i}}" style="width: 38rem;">
+                                <h2 class="accordion-header{{i}}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        [attr.data-bs-target]="'#collapseOne' + i" aria-expanded="false"
+                                        [attr.aria-controls]="'collapseOne' + i">
+                                        {{employee.name}}
+                                    </button>
+                                </h2>
+                                <div id="collapseOne{{i}}" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p><strong>Name:</strong> {{ employee.name }}</p>
+                                        <p><strong>Employee ID:</strong> {{ employee.id }}</p>
+                                        <p><strong>Email:</strong> {{ employee.email }}</p>
+                                        <p><strong>Phone:</strong> {{ employee.phone }}</p>
+                                        <p><strong>Designation:</strong> {{ employee.designation }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-warning btn-sm m-3" (click)="editEmployee(i)">Edit</button>
+                            <button class="btn btn-danger btn-sm" (click)="removeEmployee(i)">Remove</button>
+                        </div>
+                    </div>
+
+
+                    <!-- <div *ngFor="let employee of employees; let i = index" class="employee-item d-flex justify-content-between align-items-center">
+              <div class="d-flex overflow-x-auto">
+                <strong>Name:</strong> {{ employee.name }}&nbsp;
+                <strong>Employee ID:</strong> {{ employee.id }}&nbsp;
+                <strong>Email:</strong> {{ employee.email }}&nbsp;
+                <strong>Phone:</strong> {{ employee.phone }}&nbsp;
+                <strong>Designation:</strong> {{ employee.designation }}
+              </div>
+              <div>
+                <button class="btn btn-warning btn-sm m-3" (click)="editEmployee(i)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="removeEmployee(i)">Remove</button>
+              </div>
+            </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Manager Details Section -->
+        <div class="col-lg-4 mb-2">
+            <div class="card bg-dark text-white shadow">
+                <div class="card-header">
+                    <h5>Manager Details</h5>
+                </div>
+                <div class="card-body">
+                    <p *ngIf="!manager"><em>No manager details available.</em></p>
+                    <div *ngIf="manager">
+                        <p><strong>Name:</strong> {{ manager.name }}</p>
+                        <p><strong>Employee ID:</strong> {{ manager.id }}</p>
+                        <p><strong>Email:</strong> {{ manager.email }}</p>
+                        <p><strong>Phone:</strong> {{ manager.phone }}</p>
+                        <p><strong>Designation:</strong> {{ manager.designation }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: Add Project Section -->
+    <div class="row px-4 pb-4">
+        <div class="col-12">
+            <div class="card bg-dark text-white shadow">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5>Project Details</h5>
+                    <button class="btn btn-primary" 
+                        (click)="openAddProjectModal()">Add Project</button>
+                </div>
+                <div class="card-body">
+                    <div *ngIf="projects.length === 0">
+                        <p>No projects added.</p>
+                    </div>
+                    <div *ngFor="let project of projects; let i = index" class="d-flex">
+                        <div class="accordion accordion-flush" id="accordionExample">
+                            <div class="accordion-item{{i}}{{i}}" style="width: 59rem;">
+                                <h2 class="accordion-header{{i}}{{i}}">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        [attr.data-bs-target]="'#collapseOne' + i+i" aria-expanded="false"
+                                        [attr.aria-controls]="'collapseOne' + i+i">
+                                        {{project.name}}
+                                    </button>
+                                </h2>
+                                <div id="collapseOne{{i}}{{i}}" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <p><strong>Project ID:</strong> {{ project.id }}</p>
+                                        <p><strong>Project Name:</strong> {{ project.name }}</p>
+                                        <p><strong>Description:</strong> {{ project.description }}</p>
+                                        <p><strong>Start Date:</strong> {{ project.startDate | date }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-info btn-sm m-2" (click)="viewTasks(project.id)">View Tasks</button>
+                            <button class="btn btn-warning btn-sm m-2" (click)="editProject(i)">Edit</button>
+                            <button class="btn btn-danger btn-sm" (click)="removeProject(i)">Remove</button>
+                        </div>
+                    </div>
+                    <!-- <div *ngFor="let project of projects; let i = index"
+                        class="project-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <p><strong>Project ID:</strong> {{ project.id }}</p>
+                            <p><strong>Project Name:</strong> {{ project.name }}</p>
+                            <p><strong>Description:</strong> {{ project.description }}</p>
+                            <p><strong>Start Date:</strong> {{ project.startDate | date }}</p>
+                        </div>
+                        <div>
+                            <button class="btn btn-info btn-sm m-2" (click)="viewTasks(project.id)">View Tasks</button>
+                            <button class="btn btn-warning btn-sm m-2" (click)="editProject(i)">Edit</button>
+                            <button class="btn btn-danger btn-sm" (click)="removeProject(i)">Remove</button>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Employee Modal -->
+    <div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="addEmployeeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addEmployeeModalLabel">Add Employee</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form >
+                        <div class="form-group">
+                            <label for="employeeName">Name</label>
+                            <input type="text" class="form-control bg-dark text-white mb-3" id="employeeName"
+                                [(ngModel)]="newEmployee.name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeId">Employee ID</label>
+                            <input type="text" class="form-control bg-dark text-white mb-3" id="employeeId"
+                                [(ngModel)]="newEmployee.id" name="id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeEmail">Email</label>
+                            <input type="email" class="form-control bg-dark text-white mb-3" id="employeeEmail"
+                                [(ngModel)]="newEmployee.email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="employeePhone">Phone</label>
+                            <input type="tel" class="form-control bg-dark text-white mb-3" id="employeePhone"
+                                [(ngModel)]="newEmployee.phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeDesignation">Designation</label>
+                            <input type="text" class="form-control bg-dark text-white mb-3" id="employeeDesignation"
+                                [(ngModel)]="newEmployee.designation" name="designation" required>
+                        </div>
+                        <button [hidden]="isupdate" (click)="updateEmployee()" class="btn btn-primary" style="width: 100%;">Update  Employee</button>
+                        <button [hidden]="!isupdate" (click)="addEmployee()" class="btn btn-primary" style="width: 100%;">Add Employee</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Project Modal -->
+    <div class="modal fade" id="addProjectModal" tabindex="-1" aria-labelledby="addProjectModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProjectModalLabel">Add Project</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="projectId">Project ID</label>
+                            <input type="text" class="form-control bg-dark text-white mb-3" id="projectId"
+                                [(ngModel)]="newProject.id" name="id" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectName">Project Name</label>
+                            <input type="text" class="form-control bg-dark text-white mb-3" id="projectName"
+                                [(ngModel)]="newProject.name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectDescription">Description</label>
+                            <textarea class="form-control bg-dark text-white mb-3" id="projectDescription"
+                                [(ngModel)]="newProject.description" name="description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectStartDate">Start Date</label>
+                            <input type="date" class="form-control bg-dark text-white mb-3" id="projectStartDate"
+                                [(ngModel)]="newProject.startDate" name="startDate" required>
+                        </div>
+                        <button [hidden]="isupdate" (click)="updateProject()" class="btn btn-primary" style="width: 100%;">Update Project</button>
+                        <button (click)="addProject()" [hidden]="!isupdate" class="btn btn-primary" style="width: 100%;">Add Project</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
