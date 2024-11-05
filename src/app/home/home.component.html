@@ -1,21 +1,11 @@
-<!-- <div class="dark-theme d-flex justify-content-center align-items-center vh-100">
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore sint eveniet natus omnis, tempora expedita accusantium. Voluptates, aperiam! Illum, qui optio. Ipsum illum quisquam, rerum ipsa tempora id dolorem excepturi?</p>
-    <div>
-        <canvas id="canvas">{{chart}}</canvas>
-      </div>
-</div>
-
-   -->
-
 <div class="container-fluid dark-theme vh-100">
     <div class="row p-4">
-        <!-- Section 1: Add Employee Section -->
+        <!-- Add Employee Section -->
         <div class="col-lg-8 mb-6">
             <div class="card bg-dark text-white shadow">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5>Employee Details</h5>
-                    <button class="btn btn-primary" 
-                        (click)="openAddEmployeeModal()">Add Employee</button>
+                    <button class="btn btn-primary" (click)="openAddEmployeeModal()">Add Employee</button>
                 </div>
                 <div class="card-body">
                     <div *ngIf="employees.length === 0">
@@ -48,26 +38,11 @@
                             <button class="btn btn-danger btn-sm" (click)="removeEmployee(i)">Remove</button>
                         </div>
                     </div>
-
-
-                    <!-- <div *ngFor="let employee of employees; let i = index" class="employee-item d-flex justify-content-between align-items-center">
-              <div class="d-flex overflow-x-auto">
-                <strong>Name:</strong> {{ employee.name }}&nbsp;
-                <strong>Employee ID:</strong> {{ employee.id }}&nbsp;
-                <strong>Email:</strong> {{ employee.email }}&nbsp;
-                <strong>Phone:</strong> {{ employee.phone }}&nbsp;
-                <strong>Designation:</strong> {{ employee.designation }}
-              </div>
-              <div>
-                <button class="btn btn-warning btn-sm m-3" (click)="editEmployee(i)">Edit</button>
-                <button class="btn btn-danger btn-sm" (click)="removeEmployee(i)">Remove</button>
-              </div>
-            </div> -->
                 </div>
             </div>
         </div>
 
-        <!-- Section 2: Manager Details Section -->
+        <!--Manager Details Section -->
         <div class="col-lg-4 mb-2">
             <div class="card bg-dark text-white shadow">
                 <div class="card-header">
@@ -87,14 +62,13 @@
         </div>
     </div>
 
-    <!-- Section 3: Add Project Section -->
+    <!--Add Project Section -->
     <div class="row px-4 pb-4">
         <div class="col-12">
             <div class="card bg-dark text-white shadow">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5>Project Details</h5>
-                    <button class="btn btn-primary" 
-                        (click)="openAddProjectModal()">Add Project</button>
+                    <button class="btn btn-primary" (click)="openAddProjectModal()">Add Project</button>
                 </div>
                 <div class="card-body">
                     <div *ngIf="projects.length === 0">
@@ -127,20 +101,6 @@
                             <button class="btn btn-danger btn-sm" (click)="removeProject(i)">Remove</button>
                         </div>
                     </div>
-                    <!-- <div *ngFor="let project of projects; let i = index"
-                        class="project-item d-flex justify-content-between align-items-center">
-                        <div>
-                            <p><strong>Project ID:</strong> {{ project.id }}</p>
-                            <p><strong>Project Name:</strong> {{ project.name }}</p>
-                            <p><strong>Description:</strong> {{ project.description }}</p>
-                            <p><strong>Start Date:</strong> {{ project.startDate | date }}</p>
-                        </div>
-                        <div>
-                            <button class="btn btn-info btn-sm m-2" (click)="viewTasks(project.id)">View Tasks</button>
-                            <button class="btn btn-warning btn-sm m-2" (click)="editProject(i)">Edit</button>
-                            <button class="btn btn-danger btn-sm" (click)="removeProject(i)">Remove</button>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -157,34 +117,48 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form >
-                        <div class="form-group">
+                    <form  [formGroup]="EmpForm" novalidate>
+                        <div class="form-group" >
                             <label for="employeeName">Name</label>
                             <input type="text" class="form-control bg-dark text-white mb-3" id="employeeName"
-                                [(ngModel)]="newEmployee.name" name="name" required>
+                                [(ngModel)]="newEmployee.name" name="name" formControlName="name" required>
+                            <div class="text-danger" *ngIf="EmpForm.get('name')!.invalid && EmpForm.get('name')!.touched">
+                                Username is required.
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="employeeId">Employee ID</label>
                             <input type="text" class="form-control bg-dark text-white mb-3" id="employeeId"
-                                [(ngModel)]="newEmployee.id" name="id" required>
+                                [(ngModel)]="newEmployee.id" name="id" formControlName="id" required>
+                            <div class="text-danger" *ngIf="EmpForm.get('id')!.invalid && EmpForm.get('id')!.touched">
+                                Employee ID is required.
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="employeeEmail">Email</label>
                             <input type="email" class="form-control bg-dark text-white mb-3" id="employeeEmail"
-                                [(ngModel)]="newEmployee.email" name="email" required>
+                                [(ngModel)]="newEmployee.email" name="email" formControlName="email" required>
+                            <div class="text-danger" *ngIf="EmpForm.get('email')!.invalid && EmpForm.get('email')!.touched">
+                                Please enter a valid email address.
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="employeePhone">Phone</label>
                             <input type="tel" class="form-control bg-dark text-white mb-3" id="employeePhone"
-                                [(ngModel)]="newEmployee.phone" name="phone" required>
+                                [(ngModel)]="newEmployee.phone" name="phone" formControlName="phone" required>
+                            <div class="text-danger" *ngIf="EmpForm.get('phone')!.invalid && EmpForm.get('phone')!.touched">
+                                Phone number must be 10 digits.
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="employeeDesignation">Designation</label>
                             <input type="text" class="form-control bg-dark text-white mb-3" id="employeeDesignation"
                                 [(ngModel)]="newEmployee.designation" name="designation" required>
                         </div>
-                        <button [hidden]="isupdate" (click)="updateEmployee()" class="btn btn-primary" style="width: 100%;">Update  Employee</button>
-                        <button [hidden]="!isupdate" (click)="addEmployee()" class="btn btn-primary" style="width: 100%;">Add Employee</button>
+                        <button [hidden]="isupdate" (click)="updateEmployee()" class="btn btn-primary"
+                            style="width: 100%;">Update Employee</button>
+                        <button [hidden]="!isupdate" (click)="addEmployee()" class="btn btn-primary"
+                            style="width: 100%;" [disabled]="EmpForm.invalid">Add Employee</button>
                     </form>
                 </div>
             </div>
@@ -202,16 +176,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form [formGroup]="ProjectForm" novalidate>
                         <div class="form-group">
                             <label for="projectId">Project ID</label>
                             <input type="text" class="form-control bg-dark text-white mb-3" id="projectId"
-                                [(ngModel)]="newProject.id" name="id" required>
+                                [(ngModel)]="newProject.id" name="id" formControlName="id" required>
+                            <div class="text-danger" *ngIf="ProjectForm.get('id')!.invalid && ProjectForm.get('id')!.touched">
+                                Project ID is required
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="projectName">Project Name</label>
                             <input type="text" class="form-control bg-dark text-white mb-3" id="projectName"
-                                [(ngModel)]="newProject.name" name="name" required>
+                                [(ngModel)]="newProject.name" name="name" formControlName="name" required>
+                            <div class="text-danger" *ngIf="ProjectForm.get('name')!.invalid && ProjectForm.get('name')!.touched">
+                                Project Name is required
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="projectDescription">Description</label>
@@ -221,10 +201,12 @@
                         <div class="form-group">
                             <label for="projectStartDate">Start Date</label>
                             <input type="date" class="form-control bg-dark text-white mb-3" id="projectStartDate"
-                                [(ngModel)]="newProject.startDate" name="startDate" required>
+                                [(ngModel)]="newProject.startDate" name="startDate" required> 
                         </div>
-                        <button [hidden]="isupdate" (click)="updateProject()" class="btn btn-primary" style="width: 100%;">Update Project</button>
-                        <button (click)="addProject()" [hidden]="!isupdate" class="btn btn-primary" style="width: 100%;">Add Project</button>
+                        <button [hidden]="isupdate" (click)="updateProject()" class="btn btn-primary"
+                            style="width: 100%;">Update Project</button>
+                        <button (click)="addProject()" [hidden]="!isupdate" class="btn btn-primary"
+                            style="width: 100%;" [disabled]="ProjectForm.invalid">Add Project</button>
                     </form>
                 </div>
             </div>
