@@ -10,6 +10,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { NgChartsModule } from 'ng2-charts';
+import { ContactComponent } from './contact/contact.component';
+import { PrivacyComponent } from './privacy/privacy.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ContactService } from './contact.service';
 
 @NgModule({
   declarations: [
@@ -18,16 +22,21 @@ import { NgChartsModule } from 'ng2-charts';
     RegisterComponent,
     HeaderComponent,
     HomeComponent,
-    TasksComponent
+    TasksComponent,
+    ContactComponent,
+    PrivacyComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    NgChartsModule
+    NgChartsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ContactService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

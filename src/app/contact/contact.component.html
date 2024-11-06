@@ -1,0 +1,81 @@
+<div class="contact-page">
+    <!-- Main Heading -->
+    <h2 class="text-center mb-4">Contact Us</h2>
+
+    <!-- Main Container to Hold Cards -->
+    <div class="row main-container">
+        <!-- Contact Form Card -->
+        <div class="col-lg-4 col-md-6 mb-4 d-flex">
+            <div class="card contact-card flex-fill">
+                <div class="card-body">
+                    <h5 class="card-title text-center">We'd like to hear from you!<br>Message Us</h5>
+                    <form (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side Container for Location and Contact Info Cards -->
+        <div class="col-lg-4 col-md-6 mb-4 d-flex">
+            <div class="card info-card flex-fill">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Contact Information</h5>
+                    <div class="row">
+                        <div class="col-12 mb-2">
+                            <p><strong>Office Address:</strong></p>
+                            <p>1234 Example Street,<br>
+                                Suite 567,<br>
+                                Central Business District,<br>
+                                Melbourne, VIC 3000, Australia</p>
+                        </div>
+                        <div class="col-12">
+                            <p><strong>Phone:</strong> +61 (3) 9876 5432</p>
+                            <p><strong>Email:</strong> support@example.com</p>
+                        </div>
+                    </div>
+                    <!-- Social Media Links -->
+                    <div class="social-icons mt-3 text-center">
+                        <a href="https://www.facebook.com/yourcompany" target="_blank" class="me-2">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.twitter.com/yourcompany" target="_blank" class="me-2">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/yourcompany" target="_blank" class="me-2">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/yourcompany" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Location Card -->
+        <div class="col-lg-4 col-md-12 mb-4 d-flex">
+            <div class="card info-card flex-fill">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Our Location</h5>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.6139637787805!2d76.88112757362703!3d8.536805696502052!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05be8e294304bd%3A0xfad5b029b19d85d3!2sUST!5e0!3m2!1sen!2sin!4v1730872513618!5m2!1sen!2sin"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

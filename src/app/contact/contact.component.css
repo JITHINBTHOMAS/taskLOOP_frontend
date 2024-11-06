@@ -1,0 +1,152 @@
+/* Global background styling */
+.contact-page {
+    background-image: url('/assets/contactusbg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 0;
+    color: #ffffff;
+    position: relative;
+    height: 100vh; /* Full viewport height */
+}
+
+/* Dark overlay for professional look */
+.contact-page::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(18, 17, 77, 0.5);
+}
+
+/* Center the heading */
+h2 {
+    font-size: 2rem; /* Reduced font size */
+    font-weight: 600;
+    text-align: center;
+    padding-top: 20px;
+    color: #ffffff;
+}
+
+/* Main container layout (two main columns) */
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Change to stretch to fill height */
+    height: calc(100vh - 60px); /* Subtracting the heading height */
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+/* Contact Form Card */
+.contact-card-container {
+    flex: 1;
+    padding-right: 10px;
+    margin: 0;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    height: 100%; /* Use 100% of its container height */
+    overflow: hidden;
+}
+
+/* Info Cards Container (Right Side) */
+.right-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+/* Contact Info Card (Top Right) */
+.contact-info-card-container {
+    margin-bottom: 0px;
+    flex-grow: 1; /* Allow the card to grow within the available space */
+}
+
+.contact-info-card-container .card {
+    flex-grow: 1; /* Allow the card to grow and occupy available space */
+    padding: 15px;
+}
+
+/* Location Card (Bottom Right) */
+.location-card-container {
+    margin-top: 10px;
+    flex-grow: 1; /* Allow the card to grow within the available space */
+}
+
+.location-card-container .card {
+    flex-grow: 1; /* Allow the card to grow and occupy available space */
+    padding: 15px;
+}
+
+/* Info Card Styling */
+.info-card {
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    height: 100%; /* Make them both occupy equal space */
+    overflow: hidden;
+}
+
+/* Form Inputs */
+.form-control {
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 0.9rem;
+}
+
+/* Submit Button */
+button[type="submit"] {
+    font-weight: 600;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Social Media Links */
+.social-icons a {
+    font-size: 1.25rem;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0056b3;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* Stack the cards vertically on smaller screens */
+        padding: 10px;
+    }
+    .contact-card-container,
+    .right-container {
+        flex: none;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    .contact-card,
+    .info-card {
+        padding: 10px;
+        height: auto; /* Allow height to be determined by content */
+    }
+}
